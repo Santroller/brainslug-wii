@@ -457,13 +457,15 @@ fsm_t *FSM_Merge(const fsm_t *left, const fsm_t *right) {
     node_index = 
         calloc(left->node_count * right->node_count, sizeof(fsm_node_index_t));
         
-    if (node_index == NULL)
+    if (node_index == NULL) {
         goto exit_error;
+    }
     
     fsm->initial = FSM_AllocNode(fsm);
     
-    if (fsm->initial == NULL)
+    if (fsm->initial == NULL) {
         goto exit_error;
+    }
         
     common_index = 
         left->initial->index * right->node_count +

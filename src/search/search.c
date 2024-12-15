@@ -273,8 +273,9 @@ static bool Search_BuildFSM(void) {
         fsm_t *fsm;
 
         fsm = FSM_Create(i);
-        if (fsm == NULL)
+        if (fsm == NULL) {
             goto exit_error;
+        }
         
         if (fsm_final == NULL) {
             fsm_final = fsm;

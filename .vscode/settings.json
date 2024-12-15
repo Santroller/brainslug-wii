@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "format": "c",
+        "vector": "c",
+        "search.h": "c",
+        "ios": "c"
+    }
+}
