@@ -156,6 +156,12 @@ int main(void) {
         if (!Apploader_RunBackground(1))  // 1 = make the game believe it runs under the correct IOS.
             goto exit_error;
     } else {
+        int fool = 0;
+        if (_apploader_game_ios < 37) {
+            // IOS verison is too old to have USB, so swap it for one that does
+            _apploader_game_ios = 37;  
+            fool = 1; // 1 = make the game believe it runs under the correct IOS.
+        }
         // Found IOS, reload into that IOS:
         printf("Game ID: %.4s on IOS%d -> reloading ... ", os0->disc.gamename, _apploader_game_ios);
         int rval = IOS_ReloadIOS(_apploader_game_ios);
@@ -175,7 +181,7 @@ int main(void) {
             while (*(short *)0x80003140 != _apploader_game_ios);
             printf("done.\n");
 
-            if (!Apploader_RunBackground(0))  // 0 = no need to fool, we are running on the correct IOS.
+            if (!Apploader_RunBackground(fool))  
                 goto exit_error;
         }
     }
